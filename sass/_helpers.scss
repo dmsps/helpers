@@ -1,0 +1,51 @@
+// text align
+$aligns: left, center, right;
+
+@each $align in $aligns {
+    .ta#{str-slice($align, 0, 1)} {
+        text-align: $align !important;
+    }
+}
+
+// margins & paddings
+$spaceamounts: auto, 0, 5, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100;
+$sides: top, bottom, left, right;
+
+@each $space in $spaceamounts {
+    @each $side in $sides {
+        .m#{str-slice($side, 0, 1)}-#{$space} {
+            @if $space == auto {
+                margin-#{$side}: #{$space} !important;
+            }
+            @else {
+                margin-#{$side}: #{$space}px !important;
+            }
+        }
+
+        .p#{str-slice($side, 0, 1)}-#{$space} {
+            @if $space == auto {
+                padding-#{$side}: #{$space} !important;
+            }
+            @else {
+                padding-#{$side}: #{$space}px !important;
+            }
+        }
+    }
+}
+
+// height & width
+$sizeamounts: auto, 10, 15, 20, 25, 30, 35, 40, 45, 50, 75, 100;
+$directions: height, width;
+
+@each $size in $sizeamounts {
+    @each $direction in $directions {
+        .#{str-slice($direction, 0, 1)}-#{$size} {
+            @if $size == auto {
+                #{$direction}: #{$size} !important;
+            }
+            @else {
+                #{$direction}: unquote("#{$size}% !important");
+            }
+        }
+    }
+}
